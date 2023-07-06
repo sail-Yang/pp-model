@@ -1,6 +1,6 @@
 PyMySQL~=1.0.3
 pandas~=1.3.5
-numpy~=1.24.3
+numpy~=1.19.5
 paddlets~=1.1.0
 scikit-learn~=1.2.2
 Flask~=2.3.2

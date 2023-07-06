@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
+      <paths name="sailyang@111.231.32.48">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/sailyang/python/pp-model" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="sailyang@118.195.146.68">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/sailyang/python/pp-model" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="yang@10.135.37.130:22 password">
         <serverdata>
           <mappings>

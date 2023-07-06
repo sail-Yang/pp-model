@@ -1,4 +1,5 @@
 import json
+
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import and_
@@ -11,7 +12,7 @@ from utils.timeUtils import getYesterDay
 
 app = Flask(__name__)
 # 配置数据库
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:yfyfyf@10.135.37.130:3306/powerProphet"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:123456@111.231.32.48:3306/powerProphet"
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
@@ -113,5 +114,4 @@ def period():
     return predResult_json
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+app.run(host='0.0.0.0', port=5001, threaded=True)
