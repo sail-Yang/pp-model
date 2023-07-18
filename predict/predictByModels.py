@@ -33,7 +33,7 @@ def realtime_pre_models(df, splitTime, fanId, beginTrainTime):
         test_dataset).to_dataframe()[19 * 4:] * 0.4 + loaded_model2.predict(test_dataset).to_dataframe()[
                                                       19 * 4:] * 0.4
     result = result.reset_index()
-    result.columns = ['datatime', 'power', 'yd15']
+    result.columns = ['datatime', 'power', 'yd15Pre']
     result['datatime'] = result['datatime'].dt.strftime('%Y-%m-%d %H:%M:%S')
     result_json = result.to_json(orient="records", force_ascii=False, indent=4)
     return result_json
@@ -53,15 +53,6 @@ def period_pre_models(df, beginTrainTime, endTrainTime, hours, fanId):
         fillna_method='pre'
     )
     test_dataset, _ = target_cov_dataset.split(endTrainTime)
-    # try:
-    #     loaded_model0 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model0")
-    #     loaded_model1 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model1")
-    #     loaded_model2 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model2")
-    # except ValueError:
-    #     train_models(df=df, beginTrainTime=beginTrainTime, endTrainTime=endTrainTime, fanId=fanId, hours=hours)
-    #     loaded_model0 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model0")
-    #     loaded_model1 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model1")
-    #     loaded_model2 = load("static/models/multi/reg" + str(hours) + "/" + str(fanId) + "/paddlets-ensemble-model2")
     train_models(df=df, beginTrainTime=beginTrainTime, endTrainTime=endTrainTime, fanId=fanId, hours=hours)
     loaded_model0 = load("static/models/multi/reg"+str(hours)+"/" + str(fanId) + "/paddlets-ensemble-model0")
     loaded_model1 = load("static/models/multi/reg"+str(hours)+"/" + str(fanId) + "/paddlets-ensemble-model1")
@@ -71,7 +62,7 @@ def period_pre_models(df, beginTrainTime, endTrainTime, hours, fanId):
         test_dataset).to_dataframe()[19 * 4:] * 0.4 + loaded_model2.predict(test_dataset).to_dataframe()[
                                                       19 * 4:] * 0.4
     result = result.reset_index()
-    result.columns = ['datatime', 'power', 'yd15']
+    result.columns = ['datatime', 'power', 'yd15Pre']
     result['datatime'] = result['datatime'].dt.strftime('%Y-%m-%d %H:%M:%S')
     result_json = result.to_json(orient="records", force_ascii=False, indent=4)
     return result_json

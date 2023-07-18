@@ -51,6 +51,7 @@ def hello_world():  # put application's code here
     return str(result[0].password)
 
 
+# 实时预测
 @app.route('/realtime')
 def realtime():
     fanId = int(request.args.get('fanid', 1))
@@ -59,10 +60,10 @@ def realtime():
     yesterday = getYesterDay()
     # 获取训练数据集
     # splitTime = yesterday + ' ' + '04:45:00'
-    if fanId == 1:
+    if fanId == 1 or fanId == 4 or fanId == 6:
         beginTrainTime = '2021-03-31 04:45:00'
-        splitTime = '2021-09-30 04:45:00'
-    elif fanId == 2:
+        splitTime = '2021-09-29 04:45:00'
+    elif fanId == 2 or fanId == 3 or fanId == 5 or fanId == 7 or fanId == 9 or fanId == 10 or fanId == 8:
         beginTrainTime = '2022-3-31 04:45:00'
         splitTime = '2022-09-30 04:45:00'
     else:
@@ -83,6 +84,7 @@ def realtime():
     return predResult_json
 
 
+# 自定义预测
 @app.route('/period')
 def period():
     # 获取URL参数

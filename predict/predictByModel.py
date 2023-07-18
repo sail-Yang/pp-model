@@ -27,7 +27,7 @@ def realtime_pre_model(df, splitTime, fanId, beginTrainTime):
 
     result = loaded_model0.predict(test_dataset).to_dataframe()[19 * 4:]
     result = result.reset_index()
-    result.columns = ['datatime', 'power', 'yd15']
+    result.columns = ['datatime', 'power', 'yd15Pre']
     result['datatime'] = result['datatime'].dt.strftime('%Y-%m-%d %H:%M:%S')
     result_json = result.to_json(orient="records", force_ascii=False, indent=4)
     return result_json
@@ -53,7 +53,7 @@ def period_pre_model(df, beginTrainTime, endTrainTime, hours, fanId):
     # 加载模型进行训练
     result = loaded_model0.predict(test_dataset).to_dataframe()[19 * 4:]
     result = result.reset_index()
-    result.columns = ['datatime', 'power', 'yd15']
+    result.columns = ['datatime', 'power', 'yd15Pre']
     result['datatime'] = result['datatime'].dt.strftime('%Y-%m-%d %H:%M:%S')
     result_json = result.to_json(orient="records", force_ascii=False, indent=4)
     return result_json

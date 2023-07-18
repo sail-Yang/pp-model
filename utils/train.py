@@ -34,23 +34,23 @@ def train_models(df, beginTrainTime, endTrainTime, fanId, hours):
     lstm_params = {
         'sampling_stride': (hours + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
-        'max_epochs': 15,
-        'patience': 10
+        'batch_size': 64,
+        'max_epochs': 20,
+        'patience': 100
     }
     rnn_params = {
         'sampling_stride': (hours + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
-        'max_epochs': 15,
-        'patience': 10
+        'batch_size': 64,
+        'max_epochs': 20,
+        'patience': 100
     }
     mlp_params = {
         'sampling_stride': (hours + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
-        'max_epochs': 15,
-        'patience': 10,
+        'batch_size': 64,
+        'max_epochs': 20,
+        'patience': 100,
         'use_bn': True,
     }
 
@@ -107,23 +107,23 @@ def train_real_models(df, beginTrainTime, endTrainTime, fanId):
     lstm_params = {
         'sampling_stride': (24 + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
+        'batch_size': 64,
         'max_epochs': 20,
-        'patience': 10
+        'patience': 100
     }
     rnn_params = {
         'sampling_stride': (24 + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
+        'batch_size': 64,
         'max_epochs': 20,
-        'patience': 10
+        'patience': 100
     }
     mlp_params = {
         'sampling_stride': (24 + 19) * 4,
         'eval_metrics': ["mse", "mae"],
-        'batch_size': 8,
+        'batch_size': 64,
         'max_epochs': 20,
-        'patience': 10,
+        'patience': 100,
         'use_bn': True,
     }
 
@@ -175,8 +175,8 @@ def train_model(df, beginTrainTime, endTrainTime, fanId, hours):
     lstm = LSTNetRegressor(
         in_chunk_len=(hours + 19) * 7 * 4,
         out_chunk_len=(hours + 19) * 4,
-        max_epochs=10,
-        optimizer_params=dict(learning_rate=5e-3),
+        max_epochs=100,
+        optimizer_params=dict(learning_rate=1e-3),
     )
     modelFilePath = "static/models/single/reg" + str(hours) + "/" + str(fanId) + "/"
     lstm.fit(train_dataset_scaled)
@@ -218,8 +218,8 @@ def train_real_model(df, beginTrainTime, endTrainTime, fanId):
     lstm = LSTNetRegressor(
         in_chunk_len=(24 + 19) * 7 * 4,
         out_chunk_len=(24 + 19) * 4,
-        max_epochs=10,
-        optimizer_params=dict(learning_rate=5e-3),
+        max_epochs=100,
+        optimizer_params=dict(learning_rate=1e-3),
     )
     modelFilePath = "static/models/single/real/" + str(fanId) + "/"
     lstm.fit(train_dataset_scaled)
